@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>AngularJS</title>
+		<meta name="author" content="Greg Zimmer">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<!--<link rel="stylesheet" href="css/theme/default.css" id="theme">-->
+        <link rel="stylesheet" id="theme" href="css/theme/default.css" />
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        
+        <!-- Angular Setup -->
+          <!--<link rel="stylesheet" href="css/app.css">-->
+          <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+          <script src="lib/js/angular/angular.js"></script>
+          <script src="js/controllers.js"></script>
+        
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides" style="max-width:1000px;">
+
+				<section>
+					<!--<h1 style="text-transform: none;">AngularJS</h1>-->
+                    <img style="border:0;box-shadow:none;" src="https://github.com/angular/angular.js/blob/master/images/logo/AngularJS.exports/AngularJS-medium.png?raw=true"/>
+					<p>Greg Zimmer / <a href="http://twitter.com/gzimmer">@gzimmer</a>	</p>
+                    <p><small>What I learned at CodeMash 2013</small></p>
+                    <aside class="notes">
+						Inspired by the session by John Lindquist on AngularJS at CodeMash 2013
+					</aside>
+				</section>
+
+				<section>
+					<h2>CodeMash 2013</h2>
+                    <p><q>AngularJS: The HTML of the Future</q></p>
+                    <p>John Linqduist</p>
+				</section>
+                
+                <section>
+                    <h2 style="text-transform: none;">AngularJS</h2>
+                    <ul>
+                        <li>Client-side MVC Framework</li>
+                        <li>Single Page Applications</li>
+                        <li>Client-side templating</li>
+                        <li>Two-way binding</li>
+                        <li>Dependency Injection</li>
+                        <li>Built with JS testing in mind</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Simple Example</h3>
+                    <pre><code>&lt;html lang=&quot;en&quot; ng-app&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;My HTML File&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/app.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.css&quot;&gt;
+  &lt;script src=&quot;lib/angular/angular.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ 
+  &lt;p&gt;Nothing here {{'yet' + '!'}}&lt;/p&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <aside class="notes"><ul><li>ng-app: marks which part of the page to apply AngularJS to</li><li>{{ }} angular expression</li></ul></aside>
+                </section>
+                <section>
+                    <section>
+                        <h3>Template Example</h3>
+                        <pre><code>&lt;html ng-app&gt;
+&lt;head&gt;
+  ...
+  &lt;script src=&quot;lib/angular/angular.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;js/controllers.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-controller=&quot;PhoneListCtrl&quot;&gt;
+ 
+  &lt;ul&gt;
+    &lt;li ng-repeat=&quot;phone in phones&quot;&gt;
+      {{phone.name}}
+      &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </section>
+                    <section>
+                        <h3>Template Example</h3>
+                        <pre><code>...
+&lt;body ng-controller=&quot;PhoneListCtrl&quot;&gt; 
+  &lt;ul&gt;
+    &lt;li ng-repeat=&quot;phone in phones&quot;&gt;
+      {{phone.name}}
+      &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
+...</code></pre>
+      
+                        <pre><code>function PhoneListCtrl($scope) {
+  $scope.phones = [
+    {&quot;name&quot;: &quot;Nexus S&quot;,
+     &quot;snippet&quot;: &quot;Fast just got faster with Nexus S.&quot;},
+    {&quot;name&quot;: &quot;Motorola XOOM&#x2122; with Wi-Fi&quot;,
+     &quot;snippet&quot;: &quot;The Next, Next Generation tablet.&quot;},
+    {&quot;name&quot;: &quot;MOTOROLA XOOM&#x2122;&quot;,
+     &quot;snippet&quot;: &quot;The Next, Next Generation tablet.&quot;}
+  ];
+}</code></pre>
+                        <a href="http://angular.github.com/angular-phonecat/step-2/app/" target="_blank">Output</a>
+                    </section>
+                    <section id="templateApp">
+                        <h3>Template Example</h3>
+                        <div ng-controller="PhoneListCtrl">
+                        
+                          <ul>
+                            <li ng-repeat="phone in phones">
+                              {{phone.name}}
+                              <p>{{phone.snippet}}</p>
+                            </li>
+                          </ul>
+                        
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <h3>Testability</h3>
+                    <pre><code>describe('PhoneCat controllers', function() {
+ 
+  describe('PhoneListCtrl', function(){
+ 
+    it('should create &quot;phones&quot; model with 3 phones', function() {
+      var scope = {},
+          ctrl = new PhoneListCtrl(scope);
+ 
+      expect(scope.phones.length).toBe(3);
+    });
+  });
+});</code></pre>
+                </section>
+                <section>
+                    <section>
+                        <h3>Binding Example</h3>
+                        <pre><code>Search: &lt;input ng-model=&quot;query&quot;&gt;
+Sort by:
+&lt;select ng-model=&quot;orderProp&quot;&gt;
+  &lt;option value=&quot;name&quot;&gt;Alphabetical&lt;/option&gt;
+  &lt;option value=&quot;age&quot;&gt;Newest&lt;/option&gt;
+&lt;/select&gt;
+ 
+ 
+&lt;ul class=&quot;phones&quot;&gt;
+  &lt;li ng-repeat=&quot;phone in phones | filter:query | orderBy:orderProp&quot;&gt;
+    {{phone.name}}
+    &lt;p&gt;{{phone.snippet}}&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </section>
+                    <section>
+                        <h3>Binding Example</h3>
+                        <pre><code>function PhoneListCtrl($scope) {
+  $scope.phones = [
+    {"name": "Nexus S",
+     "snippet": "Fast just got faster with Nexus S.",
+     "age": 0},
+    {"name": "Motorola XOOM™ with Wi-Fi",
+     "snippet": "The Next, Next Generation tablet.",
+     "age": 1},
+    {"name": "MOTOROLA XOOM™",
+     "snippet": "The Next, Next Generation tablet.",
+     "age": 2}
+  ];
+ 
+  $scope.orderProp = 'age';
+}</code></pre>
+                    </section>
+                    <section id="bindingApp">
+                        <h3>Template Example</h3>
+                        <div ng-controller="PhoneListCtrl">
+                            Search: <input ng-model="query">
+Sort by:
+<select ng-model="orderProp">
+  <option value="name">Alphabetical</option>
+  <option value="age">Newest</option>
+</select>
+ 
+ 
+<ul class="phones">
+  <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+    {{phone.name}}
+    <p>{{phone.snippet}}</p>
+  </li>
+</ul>
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <h2>An Approach</h2>
+                    <p>Build the minimum required to get working software</p>
+                </section>
+                <section>
+                    <h2>An Approach</h2>
+                    <p>Test Drive Development</p>
+                    <ul>
+                        <li>A skill that transcends technologies</li>
+                        <li>More about design than testing</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>The Architect Role</h2>
+                    <p>An architect should be <br/> a developer that blazes the path;<br/> an explorer</p>
+                </section>
+
+                <section>
+                    <h2>Recap - Emergent Architecture</h2>
+                    <ul>
+                        <li>Last responsible moment</li>
+                        <li class="fragment">Executable Specifications</li>
+                        <li class="fragment">TDD</li>
+                        <li class="fragment">Vertical Slice</li>
+                        <li class="fragment">Minimum required for working software</li>
+                        <li class="fragment">http://docs.angularjs.org/tutorial/</li>
+                    </ul>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: false,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'linear', //Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+            angular.module('templateApp', []);
+            angular.module('bindingApp', []);
+
+            angular.bootstrap(document.getElementById('templateApp'), ['templateApp']);
+            angular.bootstrap(document.getElementById('bindingApp'), ['bindingApp']);
+
+		</script>
+
+	</body>
+</html>
