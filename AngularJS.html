@@ -202,7 +202,7 @@ Sort by:
   <option value="name">Alphabetical</option>
   <option value="age">Newest</option>
 </select>
- 
+<br/>
  
 <ul class="phones">
   <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
@@ -214,31 +214,35 @@ Sort by:
                     </section>
                 </section>
                 <section>
-                    <h2>An Approach</h2>
-                    <p>Build the minimum required to get working software</p>
+                    <section id="clickApp">
+                        <h3>Event Handler Example</h3>
+                        <div ng-controller="IncrementCtrl">
+                           Count: {{count}}<br/>
+                           <button ng-click="incrementValue()">Increment</button>
+                        </div>
+                    </section>
+                    <section>
+                        <h3>Event Handler Example</h3>
+                        <pre><code>function IncrementCtrl($scope) {
+    $scope.count = 1;
+    
+    $scope.incrementValue = function() {
+        $scope.count++;
+    }
+}</code></pre>
+                        <pre><code>&lt;div ng-controller=&quot;IncrementCtrl&quot;&gt;
+   Count: {{count}}&lt;br/&gt;
+   &lt;button ng-click=&quot;incrementValue()&quot;&gt;Increment&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    </section>
                 </section>
+               
                 <section>
-                    <h2>An Approach</h2>
-                    <p>Test Drive Development</p>
+                    <h2>Additional Info</h2>
                     <ul>
-                        <li>A skill that transcends technologies</li>
-                        <li>More about design than testing</li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>The Architect Role</h2>
-                    <p>An architect should be <br/> a developer that blazes the path;<br/> an explorer</p>
-                </section>
-
-                <section>
-                    <h2>Recap - Emergent Architecture</h2>
-                    <ul>
-                        <li>Last responsible moment</li>
-                        <li class="fragment">Executable Specifications</li>
-                        <li class="fragment">TDD</li>
-                        <li class="fragment">Vertical Slice</li>
-                        <li class="fragment">Minimum required for working software</li>
-                        <li class="fragment">http://docs.angularjs.org/tutorial/</li>
+                        <li><a href="http://angularjs.org">http://angularjs.org</a></li>
+                        <li><a href="http://egghead.io/">http://egghead.io/</a></li>
+                        <li><a href="https://github.com/angular/angular.js/wiki/JSFiddle-Examples">https://github.com/angular/angular.js/wiki/JSFiddle-Examples</a></li>
                     </ul>
                 </section>
 
@@ -276,9 +280,11 @@ Sort by:
 
             angular.module('templateApp', []);
             angular.module('bindingApp', []);
+            angular.module('clickApp', []);
 
             angular.bootstrap(document.getElementById('templateApp'), ['templateApp']);
             angular.bootstrap(document.getElementById('bindingApp'), ['bindingApp']);
+            angular.bootstrap(document.getElementById('clickApp'), ['clickApp']);
 
 		</script>
 

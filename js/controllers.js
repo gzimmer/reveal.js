@@ -7,13 +7,21 @@ function PhoneListCtrl($scope) {
     {"name": "Nexus S",
      "snippet": "Fast just got faster with Nexus S.",
      "age": 0},
-    {"name": "Motorola XOOMâ„¢ with Wi-Fi",
+    {"name": "Motorola XOOM with Wi-Fi",
      "snippet": "The Next, Next Generation tablet.",
      "age": 1},
-    {"name": "MOTOROLA XOOMâ„¢",
+    {"name": "MOTOROLA XOOM",
      "snippet": "The Next, Next Generation tablet.",
      "age": 2}
   ];
 
   $scope.orderProp = 'age';
+}
+
+function IncrementCtrl($scope) {
+    $scope.count = 1;
+    
+    $scope.incrementValue = function() {
+        $scope.count++;
+    }
 }
